@@ -1,5 +1,6 @@
 package conta;
 
+import conta.util.Cores;
 import java.util.Scanner;
 
 public class Menu {
@@ -11,6 +12,8 @@ public class Menu {
 		Scanner leia = new Scanner(System.in);
 		
 		while (true) {
+			
+			System.out.println(Cores.TEXT_PURPLE_BRIGHT + Cores.ANSI_BLACK_BACKGROUND);
 			System.out.println("*******************************************");
 			System.out.println("\n\t     BRAZILLIAN BANK");
 			System.out.println("\n*******************************************");
@@ -25,11 +28,12 @@ public class Menu {
 			System.out.println("\t9 - Sair");
 			System.out.println("\n*******************************************");
 			System.out.println("\nDigite a operação desejada");
+			System.out.println(Cores.TEXT_RESET);
 			
 			opc=leia.nextInt();
 			
 			if (opc==9) {
-				System.out.println("\nBRAZILLIAN BANK - Invest in your future.\n");
+				System.out.println(Cores.TEXT_PURPLE_BRIGHT + Cores.ANSI_BLACK_BACKGROUND +"\nBRAZILLIAN BANK - Invest in your future.\n");
 				sobre();
 				leia.close();
 				System.exit(0);
@@ -38,39 +42,39 @@ public class Menu {
 			switch (opc) {
 				
 			case 1:
-				System.out.println("Criar conta\n\n");
+				System.out.println(Cores.TEXT_WHITE_BOLD +"Criar conta\n\n");
 				break;
 			
 			case 2:
-				System.out.println("Listar contas\n\n");
+				System.out.println(Cores.TEXT_WHITE_BOLD +"Listar contas\n\n");
 				break;
 			
 			case 3:
-				System.out.println("Consulta de dados da conta - por número\n\n");
+				System.out.println(Cores.TEXT_WHITE_BOLD +"Consulta de dados da conta - por número\n\n");
 				break;
 				
 			case 4:
-				System.out.println("Atualizar dados da conta\n\n");
+				System.out.println(Cores.TEXT_WHITE_BOLD +"Atualizar dados da conta\n\n");
 				break;
 				
 			case 5:
-				System.out.println("Apagar conta\n\n");
+				System.out.println(Cores.TEXT_WHITE_BOLD +"Apagar conta\n\n");
 				break;
 				
 			case 6:
-				System.out.println("Saque\n\n");
+				System.out.println(Cores.TEXT_WHITE_BOLD +"Saque\n\n");
 				break;
 				
 			case 7:
-				System.out.println("Depósito\n\n");
+				System.out.println(Cores.TEXT_WHITE_BOLD +"Depósito\n\n");
 				break;
 				
 			case 8:
-				System.out.println("Transferência\n\n");
+				System.out.println(Cores.TEXT_WHITE_BOLD +"Transferência\n\n");
 				break;
 				
 			default:
-				System.out.println("\nOpção inválida!!\n");
+				System.out.println(Cores.TEXT_RED_BOLD +"\nOpção inválida!!\n");
 				break;
 			}
 		}
