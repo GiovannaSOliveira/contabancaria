@@ -1,5 +1,6 @@
 package conta;
 
+import conta.model.Conta;
 import conta.util.Cores;
 import java.util.Scanner;
 
