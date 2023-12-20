@@ -72,7 +72,7 @@ public class Menu {
 					do {
 						System.out.println("\nDigite o número da conta");
 						System.out.println("\n1 - Conta Corrente");
-						System.out.println("\n2 - COnta Poupança");
+						System.out.println("\n2 - Conta Poupança");
 						tipo=leia.nextInt();
 					}
 					while (tipo > 1 && tipo > 2);
@@ -106,16 +106,63 @@ public class Menu {
 			
 			case 3:
 				System.out.println(Cores.TEXT_WHITE_BOLD +"Consulta de dados da conta - por número\n\n");
+				System.out.println("\nDigite o número da conta:");
+				numero = leia.nextInt();
+				contas.procurarPorNumero(numero);
+				
 				keyPress();
 				break;
 				
 			case 4:
 				System.out.println(Cores.TEXT_WHITE_BOLD +"Atualizar dados da conta\n\n");
+				System.out.println("\nDigite o número da conta:");
+				numero = leia.nextInt();
+				var buscaConta = contas.buscarNaCollection(numero);
+				
+				if (buscaConta != null) {
+					tipo = buscaConta.getTipo();
+					
+					System.out.println("\nDigite o número da agência: ");
+					agencia = leia.nextInt();
+					System.out.println("\nDigite o nome do titular: ");
+					leia.skip("\\R?");
+					titular = leia.nextLine();
+					
+					System.out.println("\nDigite o saldo da conta em reais:");
+					saldo = leia.nextFloat();
+					
+						switch(tipo) {
+						case 1 -> {
+							System.out.println("\nDigite o limite de crédito em reais:");
+							limite = leia.nextFloat(); 
+							contas.atualizar(new ContaCorrente(numero,agencia, tipo, titular, saldo, limite));
+							}
+						case 2 -> {
+							System.out.println("\nDigite o aniversário da conta:");
+							aniversario = leia.nextInt();
+							contas.atualizar(new ContaPoupanca(numero,agencia, tipo, titular, saldo, aniversario));
+							}
+						default -> {
+							System.out.println("\nTipo de conta inválido!");
+							}
+						
+						}
+				}
+				else {
+					System.out.println("\nA conta não foi encontrada!");
+				}
+				
 				keyPress();
 				break;
 				
 			case 5:
 				System.out.println(Cores.TEXT_WHITE_BOLD +"Apagar conta\n\n");
+				
+				System.out.println("\nDigite o número da conta a ser deletada: ");
+				numero = leia.nextInt();				
+				
+				contas.deletar(numero);
+				
 				keyPress();
 				break;
 				
