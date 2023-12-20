@@ -1,15 +1,14 @@
 package conta.model;
 
 public class ContaPoupanca extends Conta{
-
+	
 	private int aniversario;
 	
-	public ContaPoupanca(int numero, int agencia, int tipo, String titular, float saldo) {
+	public ContaPoupanca(int numero, int agencia, int tipo, String titular, float saldo, int aniversario) {
 		super(numero, agencia, tipo, titular, saldo);
-		// TODO Auto-generated constructor stub
+		this.aniversario = aniversario;
 	}
 
-	
 	public int getAniversario() {
 		return aniversario;
 	}

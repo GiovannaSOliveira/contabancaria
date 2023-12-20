@@ -1,6 +1,7 @@
 package conta;
 
-import conta.model.Conta;
+import conta.controller.ContaController;
+
 import conta.model.ContaCorrente;
 import conta.model.ContaPoupanca;
 import conta.util.Cores;
@@ -14,25 +15,12 @@ public class Menu {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-
-		//Testes contas:
+		ContaController contas = new ContaController();
+	
+		int opc, numero, agencia, tipo, aniversario;
+		String titular;
+		float saldo, limite;
 		
-		ContaCorrente cc1 = new ContaCorrente (2, 123,1,"Giovanna", 15000.0f, 1000.0f);
-		cc1.visualizar();
-		cc1.sacar(12000.0f);
-		cc1.visualizar();
-		cc1.depositar(5000.0f);
-		cc1.visualizar();
-		
-		ContaPoupanca cp1 = new ContaPoupanca (3, 123, 2, "Giovanna", 10000.0f);
-		cp1.visualizar();
-		cp1.sacar(1000.0f);
-		cp1.visualizar();
-		cp1.depositar(5000.0f);
-		cp1.visualizar();
-
-		
-		int opc;
 		Scanner leia = new Scanner(System.in);
 		
 		while (true) {
@@ -75,11 +63,44 @@ public class Menu {
 				
 			case 1:
 				System.out.println(Cores.TEXT_WHITE_BOLD +"Criar conta\n\n");
+				System.out.println("\nDigite o número da agência: ");
+				agencia = leia.nextInt();
+				System.out.println("\nDigite o nome do titular:");
+				leia.skip("\\R?");
+				titular = leia.nextLine();
+				
+					do {
+						System.out.println("\nDigite o número da conta");
+						System.out.println("\n1 - Conta Corrente");
+						System.out.println("\n2 - COnta Poupança");
+						tipo=leia.nextInt();
+					}
+					while (tipo > 1 && tipo > 2);
+				
+				System.out.println("\nDigite o saldo da conta em reais:");
+				saldo = leia.nextFloat();
+				
+				
+					switch(tipo) {
+					case 1 -> {
+						System.out.println("Digite o limite de crédito em reais:");
+						limite=leia.nextFloat(); 
+						contas.cadastrar(new ContaCorrente(contas.gerarNumero(),agencia, tipo, titular, saldo, limite));
+						}
+					case 2 -> {
+						System.out.println("\nDigite o aniversário da conta:");
+						aniversario = leia.nextInt();
+						contas.cadastrar(new ContaPoupanca(contas.gerarNumero(),agencia, tipo, titular, saldo, aniversario));
+					}
+					
+				}
+				
 				keyPress();
 				break;
 			
 			case 2:
 				System.out.println(Cores.TEXT_WHITE_BOLD +"Listar contas\n\n");
+				contas.listarTodas();
 				keyPress();
 				break;
 			
