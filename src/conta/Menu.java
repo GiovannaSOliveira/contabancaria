@@ -13,13 +13,12 @@ import java.util.Scanner;
 public class Menu {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		
 		ContaController contas = new ContaController();
 	
-		int opc, numero, agencia, tipo, aniversario;
+		int opc, numero, agencia, tipo, aniversario, numeroDestino;
 		String titular;
-		float saldo, limite;
+		float saldo, limite, valor;
 		
 		Scanner leia = new Scanner(System.in);
 		
@@ -168,16 +167,53 @@ public class Menu {
 				
 			case 6:
 				System.out.println(Cores.TEXT_WHITE_BOLD +"Saque\n\n");
+				System.out.println("\nDigite o número da conta:");
+				numero = leia.nextInt();
+				
+				do {
+					System.out.println("\nDigite o valor do saque em reais.");
+					valor = leia.nextFloat();
+				}
+				while (valor<=0);
+				
+				contas.sacar(numero, valor);
+				
 				keyPress();
 				break;
 				
 			case 7:
 				System.out.println(Cores.TEXT_WHITE_BOLD +"Depósito\n\n");
+				System.out.println("\nDigite o número da conta: ");
+				numero = leia.nextInt();
+				
+				do {
+					System.out.println("\nDigite o valor do depósito em reais.");
+					valor = leia.nextFloat();
+				}
+				while (valor<=0);
+				
+				contas.depositar(numero, valor);
+				
 				keyPress();
 				break;
 				
 			case 8:
 				System.out.println(Cores.TEXT_WHITE_BOLD +"Transferência\n\n");
+				
+				System.out.println("\nDigite o número da conta origem: ");
+				numero = leia.nextInt();
+				
+				System.out.println("\nDigite o número da conta destino:");
+				numeroDestino = leia.nextInt();
+				
+				do {
+					System.out.println("\nDigite o valor do depósito em reais.");
+					valor = leia.nextFloat();
+				}
+				while (valor<=0);
+				
+				contas.tranferir(numero, numeroDestino, valor);
+				
 				keyPress();
 				break;
 				
